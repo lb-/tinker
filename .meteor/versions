@@ -1,3 +1,4 @@
+andrasph:random-color@0.0.1
 application-configuration@1.0.1
 autopublish@1.0.0
 autoupdate@1.0.6
@@ -27,6 +28,7 @@ minifiers@1.0.2
 minimongo@1.0.2
 mizzao:bootstrap-3@3.2.0
 mongo@1.0.4
+mrt:jquery-color-animation@1.6.0
 observe-sequence@1.0.2
 ordered-dict@1.0.0
 random@1.0.0
