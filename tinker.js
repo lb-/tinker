@@ -8,7 +8,10 @@ if (Meteor.isClient) {
     check(fn, String);
     check(param, String);
     if ( fn === 'background-color' ) {
-      $('body').css('background-color', param);
+      //$('body').css('background-color', param);
+      $('body').animate({
+        backgroundColor: param,
+      }, 1000);
       return;
     }
     throw new Error('invalid fn String provided: ', fn);
@@ -16,7 +19,8 @@ if (Meteor.isClient) {
 
   Template.tinkerPane.triggers = function () {
     var triggers = [];
-    _.each(['Q','W','E','R','T'], function (key) {
+    var newTriggers = Session.get('newTriggers');
+    _.each(['q','w','e','r','t'], function (key) {
       var color = randomColor();
       triggers.push({
         key: key,
@@ -32,7 +36,8 @@ if (Meteor.isClient) {
 
   Template.tinkerPane.events({
     'click .trigger': function (event, template) {
-      var trigger = Blaze.getData(event.target);
+      var button = $(event.target).closest('button')[0];
+      var trigger = Blaze.getData(button);
       Meteor.call('tinkerAction', trigger.action, function (error, result) {
         if (error) {
           throw error;
@@ -40,6 +45,9 @@ if (Meteor.isClient) {
           //do something with result
         }
       });
+    },
+    'click .reset-triggers': function (event, template) {
+      Session.set('newTriggers', Random.id());
     },
   });
 }
