@@ -34,6 +34,12 @@ if (Meteor.isClient) {
     return triggers;
   };
 
+  Template.timer.rendered = function () {
+    var clock = $('.timer').FlipClock({
+      clockFace: 'Counter',
+    });
+  };
+
   Template.tinkerPane.events({
     'click .trigger': function (event, template) {
       var button = $(event.target).closest('button')[0];
