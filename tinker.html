@@ -14,15 +14,15 @@
 <template name="tinkerPane">
   <div class="row">
     <div class="col-xs-1 col-sm-2 col-md-2 col-lg-3">
-      {{>timeline}}
+      <div>
+        {{>countdown}}
+      </div>
+      <div>
+        {{>timeline}}
+      </div>
     </div>
     <div class="col-xs-11 col-sm-10 col-md-10 col-lg-9">
-      <div class="row">
-        <div class="pull-right">
-          {{>countdown}}
-        </div>
-      </div>
-      <div class="row footer">
+      <div class="row pull-right" style="margin-top:10px;">
         <div class="btn-toolbar">
           <div class="btn-group">
             {{#each triggers}}
@@ -30,7 +30,7 @@
             {{/each}}
           </div>
           <div class="btn-group">
-            <button class="btn btn-info btn-lg reset-triggers">+</button>
+            <button class="btn btn-info btn-md reset-triggers">+</button>
           </div>
         </div>
       </div>
@@ -57,7 +57,12 @@
 </template>
 
 <template name="triggerButton">
-  <button class="btn btn-default btn-lg trigger">
-    {{label}}
+  <button class="btn btn-default btn-md trigger">
+    <kbd>{{key}}</kbd> {{label}}
+    {{>indicator backgroundColor=action.param}}
   </button>
+</template>
+
+<template name="indicator">
+  <div  class="indicator" style="background-color: {{backgroundColor}};"></div>
 </template>

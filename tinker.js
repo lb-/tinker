@@ -14,15 +14,20 @@ if (Meteor.isClient) {
     throw new Error('invalid fn String provided: ', fn);
   };
 
-
   Template.tinkerPane.triggers = function () {
-    return [
-      {label: 'Yellow', action: {fn: 'background-color', param: 'yellow', actionLog: 'Change background to Yellow'} },
-      {label: 'Red', action: {fn: 'background-color', param: 'red', actionLog: 'Change background to Red'} },
-      {label: 'Blue', action: {fn: 'background-color', param: 'blue', actionLog: 'Change background to Blue'} },
-      {label: 'Green', action: {fn: 'background-color', param: 'green', actionLog: 'Change background to Green'} },
-      {label: 'Orange', action: {fn: 'background-color', param: 'orange', actionLog: 'Change background to Orange'} },
-    ]
+    var triggers = [];
+    _.each(['Q','W','E','R','T'], function (key) {
+      var color = randomColor();
+      triggers.push({
+        key: key,
+        label: '',
+        action: {
+          fn: 'background-color',
+          param: color,
+          actionLog: 'Change background to ' + color}
+        });
+    });
+    return triggers;
   };
 
   Template.tinkerPane.events({
